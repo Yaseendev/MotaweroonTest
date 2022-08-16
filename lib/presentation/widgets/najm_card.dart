@@ -14,25 +14,26 @@ class NajmCard extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: Card(
+          elevation: 15,
           //color: Colors.orange,
           child: Center(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                  child: Icon(
-                icon, size: 50.0,
-                //color: textStyle.color,
-              )),
-              Text(
-                text,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-            ]),
-      )),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                      child: Icon(
+                    icon, size: 50.0,
+                    //color: textStyle.color,
+                  )),
+                  Text(
+                    text,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ]),
+          )),
     );
   }
 }
