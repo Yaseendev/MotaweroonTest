@@ -1,13 +1,22 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../widgets/home_header.dart';
 import '../widgets/najm_card.dart';
 import 'definition_screen.dart';
+import 'importance_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-  static List<Widget> imagesWidgets = [
+
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+    final List<Widget> imagesWidgets = [
     Container(
       //  margin: EdgeInsets.all(5.0),
       child: ClipRRect(
@@ -48,6 +57,10 @@ class HomeScreen extends StatelessWidget {
     ),
   ];
 
+  YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: '7mB-upPOjyM',
+);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,33 +86,44 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Center(
                     child: NajmCard(
-                      icon: Icons.back_hand,
+                      icon: Icons.question_mark,
                       text: 'Defenition',
                       onPress: () {
                         Navigator.of(context)
                             .push(MaterialPageRoute(builder: (ctx) {
                           return DefinitionScreen();
                         }));
+                        
                       },
                     ),
                   ),
                   Center(
                     child: NajmCard(
-                      icon: Icons.back_hand,
-                      text: 'Defenition',
-                      onPress: () {},
+                      icon: Icons.star,
+                      text: 'أهمية النجم',
+                      onPress: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (ctx) {
+                          return ImportanceScreen();
+                        }));
+                      },
                     ),
                   ),
-                  Center(
-                    child: NajmCard(
-                      icon: Icons.back_hand,
-                      text: 'Defenition',
-                      onPress: () {},
-                    ),
-                  ),
+                  // Center(
+                  //   child: NajmCard(
+                  //     icon: Icons.back_hand,
+                  //     text: 'Videos',
+                  //     onPress: () {},
+                  //   ),
+                  // ),
                 ],
               ),
             ),
+            YoutubePlayer(
+    controller: _controller,
+    showVideoProgressIndicator: true,
+
+),
           ],
         ),
       ),
